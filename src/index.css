@@ -8,13 +8,18 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-[#F8FAFC] text-[#1A2A3A];
+    @apply bg-[#F8FAFC] text-[#1B194A];
     font-family: 'Inter', sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold tracking-tight;
   }
 }
@@ -25,15 +30,15 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-[#1A2A3A] to-[#B5D343] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#1B194A] to-[#73BE44] bg-clip-text text-transparent;
   }
 
   .btn-primary {
-    @apply bg-[#1A2A3A] text-[#F8FAFC] px-8 py-4 hover:bg-[#B5D343] hover:text-[#1A2A3A] transition-all duration-300 text-lg font-semibold;
+    @apply bg-[#1B194A] text-[#F8FAFC] px-8 py-4 hover:bg-[#73BE44] hover:text-[#1B194A] transition-all duration-300 text-lg font-semibold;
   }
 
   .btn-secondary {
-    @apply border-2 border-[#1A2A3A] text-[#1A2A3A] px-8 py-4 hover:bg-[#1A2A3A] hover:text-[#F8FAFC] transition-all duration-300 text-lg font-semibold;
+    @apply border-2 border-[#1B194A] text-[#1B194A] px-8 py-4 hover:bg-[#1B194A] hover:text-[#F8FAFC] transition-all duration-300 text-lg font-semibold;
   }
 
   .section-title {
@@ -50,9 +55,12 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }

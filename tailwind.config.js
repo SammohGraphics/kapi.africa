@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'midnight-indigo': '#1A2A3A',
-        'lime-green': '#B5D343',
+        'midnight-indigo': '#1B194A',
+        'lime-green': '#73BE44',
         'ghost-white': '#F8FAFC',
         'cream': '#FFF9F0',
         'slate': '#475569',

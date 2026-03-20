@@ -1,12 +1,12 @@
 <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <pattern id="kapi-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-      <path d="M20,20 L40,20 L30,40 L20,20" fill="#B5D343" opacity="0.1"/>
-      <path d="M45,15 L65,15 L55,35 L45,15" fill="#1A2A3A" opacity="0.1"/>
-      <path d="M70,30 L90,30 L80,50 L70,30" fill="#B5D343" opacity="0.1"/>
-      <path d="M25,55 L45,55 L35,75 L25,55" fill="#1A2A3A" opacity="0.1"/>
-      <path d="M50,70 L70,70 L60,90 L50,70" fill="#B5D343" opacity="0.1"/>
+      <path d="M20,20 L40,20 L30,40 L20,20" fill="#73BE44" opacity="0.1" />
+      <path d="M45,15 L65,15 L55,35 L45,15" fill="#1B194A" opacity="0.1" />
+      <path d="M70,30 L90,30 L80,50 L70,30" fill="#73BE44" opacity="0.1" />
+      <path d="M25,55 L45,55 L35,75 L25,55" fill="#1B194A" opacity="0.1" />
+      <path d="M50,70 L70,70 L60,90 L50,70" fill="#73BE44" opacity="0.1" />
     </pattern>
   </defs>
-  <rect width="100" height="100" fill="url(#kapi-pattern)"/>
+  <rect width="100" height="100" fill="url(#kapi-pattern)" />
 </svg>
