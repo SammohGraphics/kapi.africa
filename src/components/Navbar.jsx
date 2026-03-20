@@ -1,5 +1,6 @@
 import { ArrowRight, Menu, X, Zap, ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import logo from '../assets/MainLogo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,15 +73,9 @@ const Navbar = () => {
   };
 
   // Multiple logo paths to try
-  const logoPaths = [
-    '/kapi.africa/src/assets/KAPILogo-05.png',
-    '/src/assets/KAPILogo-05.png',
-    './src/assets/KAPILogo-05.png',
-    'kapi.africa/src/assets/KAPILogo-05.png',
-    'src/assets/KAPILogo-05.png',
-    '/assets/KAPILogo-05.png',
-    'assets/KAPILogo-05.png'
-  ];
+  // const logoPaths = [
+  //   '../assets/logo.png',
+  // ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${
@@ -100,30 +95,20 @@ const Navbar = () => {
           >
             <div className="relative">
               {!logoError ? (
-                <img 
-                  src={logoPaths[0]}
-                  alt="KAPI Logo"
-                  className="h-14 w-auto object-contain relative z-10"
-                  onError={() => setLogoError(true)}
-                />
+             <img 
+  src={logo}
+  alt="KAPI Logo"
+  className="h-14 w-auto object-contain relative z-10"
+/>
               ) : (
                 // Fallback logo if image fails to load
                 <div className="h-14 w-14 bg-[#1B194A] flex items-center justify-center relative z-10">
-                  <span className="text-[#73BE44] text-3xl font-black">K</span>
+                  {/* <span className="text-[#73BE44] text-3xl font-black">K</span> */}
                 </div>
               )}
-              
-              {/* Elegant single decorative element */}
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#73BE44] opacity-50"></div>
+
             </div>
-            
-            <div className="flex flex-col">
-              <div className="flex items-baseline">
-                <span className="text-2xl font-black text-[#1B194A] tracking-tight">KAPI</span>
-                <Zap size={14} className="text-[#73BE44] ml-1" />
-              </div>
-              <span className="text-xs tracking-[0.2em] text-[#64748B] font-light">AFRICA</span>
-            </div>
+
           </a>
 
           {/* Desktop Menu - Reordered with Services after About */}
@@ -207,6 +192,8 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
+
+
 
             {/* Portfolio */}
             <a

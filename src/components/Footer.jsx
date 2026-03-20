@@ -1,4 +1,5 @@
 import { ArrowUp, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send, Twitter } from 'lucide-react';
+import logo from '../assets/MainLogo.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -45,16 +46,20 @@ const Footer = () => {
           
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <div className="relative">
-                <div className="w-10 h-10 bg-[#73BE44] flex items-center justify-center">
-                  <span className="text-[#1B194A] text-xl font-black">K</span>
+                <div className="w-14 h-14 bg-[#73BE44] flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={logo} 
+                    alt="KAPI Group Logo" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#73BE44]"></span>
+                {/* <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#73BE44]"></span> */}
               </div>
               <div>
-                <span className="text-xl font-black text-[#F8FAFC]">KAPI</span>
-                <span className="text-xs tracking-widest text-[#F8FAFC]/40 block">AFRICA</span>
+                {/* <span className="text-xl font-black text-[#F8FAFC]">KAPI</span>
+                <span className="text-xs tracking-widest text-[#F8FAFC]/40 block">AFRICA</span> */}
               </div>
             </div>
             

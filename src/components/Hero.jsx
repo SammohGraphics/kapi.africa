@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Building2, Zap, Sprout, Droplets, TrendingUp } from 'lucide-react';
+import logo from '../assets/MainLogo.png';
 
 const Hero = () => {
   const [activeStat, setActiveStat] = useState(0);
@@ -98,23 +99,23 @@ const Hero = () => {
             </div>
 
             {/* Clean Typography */}
-            <div className="space-y-2">
-              <h1 className="overflow-hidden">
-                <span className="block text-6xl lg:text-7xl font-light text-[#1B194A] leading-[1.1] animate-slide-up">
-                  Building
-                </span>
-              </h1>
-              <h1 className="overflow-hidden">
-                <span className="block text-7xl lg:text-8xl font-black text-[#1B194A] leading-[1.1] animate-slide-up animation-delay-150">
-                  Tomorrow,
-                </span>
-              </h1>
-              <h1 className="overflow-hidden">
-                <span className="block text-7xl lg:text-8xl font-black text-[#73BE44] leading-[1.1] animate-slide-up animation-delay-300">
-                  Today.
-                </span>
-              </h1>
-            </div>
+    <div className="space-y-2">
+  <h1>
+    <span className="block text-7xl lg:text-7xl font-light text-[#1B194A] leading-[1.2] animate-slide-up">
+      Building
+    </span>
+  </h1>
+  <h1>
+    <span className="block text-7xl lg:text-8xl font-black text-[#1B194A] leading-[1.2] animate-slide-up animation-delay-150">
+      Tomorrow,
+    </span>
+  </h1>
+  <h1>
+    <span className="block text-7xl lg:text-8xl font-black text-[#73BE44] leading-[1.2] animate-slide-up animation-delay-300">
+      Today.
+    </span>
+  </h1>
+</div>
 
             {/* Simple Description */}
             <div className="max-w-lg">
@@ -183,15 +184,115 @@ const Hero = () => {
                 <div className="absolute inset-0 border border-[#1B194A]/10 rounded-full"></div>
                 <div className="absolute inset-16 border border-[#73BE44]/10 rounded-full"></div>
                 
-                {/* Central K */}
+                {/* Animated SVG Icon - KAPI Infinity */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    <div className="w-28 h-28 bg-[#1B194A] flex items-center justify-center">
-                      <span className="text-[#73BE44] text-5xl font-black">K</span>
+                  <div className="relative w-32 h-32">
+                    <svg
+                      viewBox="0 0 100 100"
+                      className="w-full h-full animate-pulse-slow"
+                      style={{
+                        animation: 'pulse-slow 3s ease-in-out infinite, rotate-slow 12s linear infinite'
+                      }}
+                    >
+                      {/* Main Circle Background */}
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        fill="none"
+                        stroke="#1B194A"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 3"
+                        className="opacity-30"
+                      />
+                      
+                      {/* Rotating Ring */}
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="38"
+                        fill="none"
+                        stroke="#73BE44"
+                        strokeWidth="2"
+                        strokeDasharray="6 4"
+                        style={{
+                          animation: 'rotate-reverse 8s linear infinite',
+                          transformOrigin: 'center'
+                        }}
+                      />
+                      
+                      {/* K Letter with Flourish */}
+                      <g style={{ animation: 'gentle-sway 4s ease-in-out infinite', transformOrigin: 'center' }}>
+                        {/* <path
+                          d="M32 28 L32 72 M32 50 L48 50 M32 50 L48 72 M32 50 L48 28"
+                          stroke="#73BE44"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          fill="none"
+                          className="animate-draw"
+                        /> */}
+                        
+                        {/* Decorative Dots */}
+                        <circle cx="32" cy="28" r="2" fill="#73BE44" className="animate-ping-slow">
+                          <animate
+                            attributeName="r"
+                            values="2;3;2"
+                            dur="2s"
+                            repeatCount="indefinite"
+                          />
+                        </circle>
+                        <circle cx="48" cy="72" r="1.5" fill="#1B194A">
+                          <animate
+                            attributeName="opacity"
+                            values="0.4;1;0.4"
+                            dur="2s"
+                            repeatCount="indefinite"
+                          />
+                        </circle>
+                      </g>
+                      
+                      {/* Orbiting Particles */}
+                      <circle cx="50" cy="50" r="45" fill="none" stroke="none">
+                        <animateMotion
+                          path="M 50,50 m -45,0 a 45,45 0 1,0 90,0 a 45,45 0 1,0 -90,0"
+                          dur="10s"
+                          repeatCount="indefinite"
+                        >
+                          <circle r="2" fill="#73BE44" opacity="0.6">
+                            <animate
+                              attributeName="r"
+                              values="1;2;1"
+                              dur="2s"
+                              repeatCount="indefinite"
+                            />
+                          </circle>
+                        </animateMotion>
+                      </circle>
+                      
+                      {/* Additional Orbiting Particles */}
+                      <circle cx="50" cy="50" r="48" fill="none" stroke="none">
+                        <animateMotion
+                          path="M 50,50 m -48,0 a 48,48 0 1,1 96,0 a 48,48 0 1,1 -96,0"
+                          dur="15s"
+                          repeatCount="indefinite"
+                          rotate="auto"
+                        >
+                          <circle r="1.5" fill="#1B194A" opacity="0.4">
+                            <animate
+                              attributeName="opacity"
+                              values="0.2;0.6;0.2"
+                              dur="3s"
+                              repeatCount="indefinite"
+                            />
+                          </circle>
+                        </animateMotion>
+                      </circle>
+                    </svg>
+                    
+                    {/* Small decorative elements */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full border border-[#73BE44]/20 animate-spin-slow"></div>
                     </div>
-                    {/* Small decorative dots */}
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#73BE44]"></span>
-                    <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#1B194A]"></span>
                   </div>
                 </div>
 
@@ -308,6 +409,42 @@ const Hero = () => {
           50% { transform: translate(-50%, -50%) translateY(-8px); }
         }
         
+        @keyframes pulse-slow {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        
+        @keyframes rotate-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @keyframes rotate-reverse {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        
+        @keyframes gentle-sway {
+          0%, 100% { transform: rotate(0deg); }
+          50% { transform: rotate(5deg); }
+        }
+        
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @keyframes draw {
+          from {
+            stroke-dasharray: 0, 100;
+            stroke-dashoffset: 0;
+          }
+          to {
+            stroke-dasharray: 100, 0;
+            stroke-dashoffset: 0;
+          }
+        }
+        
         .animate-slide-up {
           animation: slide-up 0.8s ease-out forwards;
         }
@@ -320,6 +457,32 @@ const Hero = () => {
         .animation-delay-300 {
           animation-delay: 300ms;
           opacity: 0;
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
+        
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+        
+        .animate-draw {
+          stroke-dasharray: 100;
+          stroke-dashoffset: 100;
+          animation: draw 1.5s ease-out forwards;
+          animation-delay: 0.5s;
+        }
+        
+        .animate-ping-slow {
+          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        @keyframes ping {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
         }
       `}</style>
     </section>
