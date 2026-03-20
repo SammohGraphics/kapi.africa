@@ -1,4 +1,4 @@
-import { ArrowRight, Menu, X, Zap } from 'lucide-react';
+import { ArrowRight, Menu, X, Zap, ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Navbar = () => {
@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [logoError, setLogoError] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +39,14 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
+  const services = [
+    { name: 'Real Estate', href: '#portfolio', id: 'realestate', description: 'Premium properties' },
+    { name: 'Energy', href: '#portfolio', id: 'energy', description: 'Petroleum solutions' },
+    { name: 'Tech & Innovation', href: '#portfolio', id: 'tech', description: 'Digital transformation' },
+    { name: 'Financial Services', href: '#portfolio', id: 'financial', description: 'Economic inclusion' },
+    { name: 'Agribusiness', href: '#portfolio', id: 'agri', description: 'Sustainable farming' },
+  ];
+
   const handleNavClick = (e, id) => {
     e.preventDefault();
     const element = document.getElementById(id);
@@ -45,6 +54,20 @@ const Navbar = () => {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(id);
       setIsOpen(false);
+      setServicesOpen(false);
+    }
+  };
+
+  const handleServiceClick = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Also set the active sector in Portfolio component
+      const event = new CustomEvent('setActiveSector', { detail: id });
+      window.dispatchEvent(event);
+      setIsOpen(false);
+      setServicesOpen(false);
     }
   };
 
@@ -62,11 +85,10 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-[#F8FAFC]/98 backdrop-blur-xl shadow-[0_8px_32px_rgba(26,42,58,0.1)]' 
+        ? 'bg-[#F8FAFC]/98 backdrop-blur-xl shadow-lg' 
         : 'bg-transparent'
     }`}>
-      {/* Top accent line with pattern inspiration */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#1B194A] via-[#73BE44] to-[#1B194A]"></div>
+      {/* Removed top gradient border - cleaner look */}
       
       <div className="container-custom">
         <div className="flex justify-between items-center py-4 lg:py-6">
@@ -91,120 +113,249 @@ const Navbar = () => {
                 </div>
               )}
               
-              {/* Decorative elements inspired by the pattern */}
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#73BE44] transform rotate-12 group-hover:rotate-45 transition-transform duration-300"></div>
-              <div className="absolute -top-1 -left-1 w-2 h-2 bg-[#1B194A] opacity-50"></div>
+              {/* Elegant single decorative element */}
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#73BE44] opacity-50"></div>
             </div>
             
             <div className="flex flex-col">
               <div className="flex items-baseline">
                 <span className="text-2xl font-black text-[#1B194A] tracking-tight">KAPI</span>
-                <Zap size={16} className="text-[#73BE44] ml-1" />
+                <Zap size={14} className="text-[#73BE44] ml-1" />
               </div>
-              <span className="text-xs tracking-[0.3em] text-[#475569] font-medium">AFRICA</span>
-              {/* Underline effect */}
-              <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-[#73BE44] to-transparent transition-all duration-500 mt-1"></div>
+              <span className="text-xs tracking-[0.2em] text-[#64748B] font-light">AFRICA</span>
             </div>
           </a>
 
-          {/* Desktop Menu with enhanced styling and active state */}
+          {/* Desktop Menu - Reordered with Services after About */}
           <div className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link, index) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.id)}
-                className={`relative px-4 py-2 transition-all duration-300 font-medium group overflow-hidden ${
-                  activeSection === link.id 
-                    ? 'text-[#73BE44]' 
-                    : 'text-[#1B194A] hover:text-[#73BE44]'
+            {/* Home */}
+            <a
+              href="#home"
+              onClick={(e) => handleNavClick(e, 'home')}
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                activeSection === 'home' 
+                  ? 'text-[#73BE44]' 
+                  : 'text-[#1B194A] hover:text-[#73BE44]'
+              }`}
+            >
+              Home
+              {activeSection === 'home' && (
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#73BE44]"></span>
+              )}
+            </a>
+
+            {/* About */}
+            <a
+              href="#about"
+              onClick={(e) => handleNavClick(e, 'about')}
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                activeSection === 'about' 
+                  ? 'text-[#73BE44]' 
+                  : 'text-[#1B194A] hover:text-[#73BE44]'
+              }`}
+            >
+              About
+              {activeSection === 'about' && (
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#73BE44]"></span>
+              )}
+            </a>
+
+            {/* Services Dropdown - Now after About */}
+            <div className="relative">
+              <button
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 flex items-center gap-1 group ${
+                  servicesOpen ? 'text-[#73BE44]' : 'text-[#1B194A] hover:text-[#73BE44]'
                 }`}
-                style={{ transitionDelay: `${index * 50}ms` }}
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
               >
-                <span className="relative z-10">{link.name}</span>
-                {/* Animated background with pattern inspiration */}
-                <span className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(181,211,67,0.1)_30%,rgba(181,211,67,0.1)_40%,transparent_40%,transparent_70%,rgba(181,211,67,0.1)_70%,rgba(181,211,67,0.1)_80%,transparent_80%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                {/* Active/Animated underline */}
-                <span className={`absolute bottom-0 left-0 h-0.5 bg-[#73BE44] transition-all duration-300 ${
-                  activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
+                <span>Services</span>
+                <ChevronDown size={14} className={`transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`} />
+                
+                {/* Elegant dot indicator */}
+                <span className={`absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#73BE44] rounded-full transition-opacity duration-300 ${
+                  servicesOpen ? 'opacity-100' : 'opacity-0'
                 }`}></span>
-              </a>
-            ))}
+              </button>
+              
+              {/* Elegant Dropdown Menu */}
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white shadow-xl rounded-lg overflow-hidden transition-all duration-300 ${
+                  servicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                {/* Simple accent line */}
+                <div className="h-1 bg-gradient-to-r from-[#1B194A] via-[#73BE44] to-[#1B194A]"></div>
+                
+                <div className="py-2">
+                  {services.map((service, index) => (
+                    <a
+                      key={index}
+                      href={service.href}
+                      onClick={(e) => handleServiceClick(e, service.id)}
+                      className="flex items-center justify-between px-4 py-3 text-sm text-[#1B194A] hover:bg-[#73BE44]/5 hover:text-[#73BE44] transition-all duration-300 group"
+                    >
+                      <div className="flex flex-col">
+                        <span className="font-medium">{service.name}</span>
+                        <span className="text-xs text-[#94A3B8]">{service.description}</span>
+                      </div>
+                      <ArrowRight size={12} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Portfolio */}
+            <a
+              href="#portfolio"
+              onClick={(e) => handleNavClick(e, 'portfolio')}
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                activeSection === 'portfolio' 
+                  ? 'text-[#73BE44]' 
+                  : 'text-[#1B194A] hover:text-[#73BE44]'
+              }`}
+            >
+              Portfolio
+              {activeSection === 'portfolio' && (
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#73BE44]"></span>
+              )}
+            </a>
+
+            {/* CSR */}
+            <a
+              href="#csr"
+              onClick={(e) => handleNavClick(e, 'csr')}
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                activeSection === 'csr' 
+                  ? 'text-[#73BE44]' 
+                  : 'text-[#1B194A] hover:text-[#73BE44]'
+              }`}
+            >
+              CSR
+              {activeSection === 'csr' && (
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#73BE44]"></span>
+              )}
+            </a>
+
+            {/* Contact */}
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, 'contact')}
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                activeSection === 'contact' 
+                  ? 'text-[#73BE44]' 
+                  : 'text-[#1B194A] hover:text-[#73BE44]'
+              }`}
+            >
+              Contact
+              {activeSection === 'contact' && (
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#73BE44]"></span>
+              )}
+            </a>
             
-            {/* Enhanced CTA Button */}
-            <button className="relative ml-4 px-6 py-3 bg-[#1B194A] text-[#F8FAFC] overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300">
-              {/* Pattern overlay on hover */}
-              <span className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,#73BE44_30%,#73BE44_40%,transparent_40%,transparent_70%,#73BE44_70%,#73BE44_80%,transparent_80%)] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></span>
-              
-              {/* Button content */}
-              <span className="relative z-10 flex items-center space-x-2">
-                <span>Connect With Us</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-              
-              {/* Animated corner accents */}
-              <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#73BE44] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#73BE44] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            {/* Elegant CTA Button */}
+            <button className="ml-4 px-5 py-2 bg-[#1B194A] text-[#F8FAFC] text-sm font-medium hover:bg-[#1B194A]/90 transition-all duration-300 rounded-none">
+              Connect
             </button>
           </div>
 
-          {/* Mobile Menu Button with enhanced animation */}
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden relative w-12 h-12 bg-[#1B194A] text-[#F8FAFC] flex items-center justify-center group overflow-hidden"
+            className="md:hidden relative w-10 h-10 text-[#1B194A] flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <span className="absolute inset-0 bg-[#73BE44] scale-0 group-hover:scale-100 transition-transform duration-300 origin-center"></span>
-            <span className="relative z-10">
-              {isOpen ? <X size={24} className="transform rotate-90 transition-transform duration-300" /> : <Menu size={24} />}
-            </span>
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Mobile Menu with pattern-inspired design and active state */}
+        {/* Mobile Menu */}
         <div className={`md:hidden fixed inset-x-0 top-[73px] transition-all duration-500 transform ${
           isOpen ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0 pointer-events-none'
         }`}>
-          <div className="bg-[#F8FAFC] shadow-2xl border-t-2 border-[#73BE44]">
-            {/* Pattern decoration */}
-            <div className="h-2 bg-[linear-gradient(90deg,#1B194A_0%,#1B194A_20%,#73BE44_20%,#73BE44_40%,#F8FAFC_40%,#F8FAFC_60%,#73BE44_60%,#73BE44_80%,#1B194A_80%,#1B194A_100%)]"></div>
-            
-            <div className="p-6 space-y-4">
-              {navLinks.map((link, index) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.id)}
-                  className={`flex items-center justify-between group py-3 px-4 transition-all duration-300 ${
-                    activeSection === link.id 
-                      ? 'bg-[#1B194A]/5 text-[#73BE44] border-l-4 border-[#73BE44]' 
-                      : 'hover:bg-[#1B194A]/5 text-[#1B194A]'
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <span className={`font-medium group-hover:translate-x-2 transition-transform duration-300 ${
-                    activeSection === link.id ? 'font-bold' : ''
-                  }`}>
-                    {link.name}
-                  </span>
-                  <span className={`w-6 h-6 border rounded-full flex items-center justify-center transition-all duration-300 ${
-                    activeSection === link.id 
-                      ? 'border-[#73BE44] bg-[#73BE44] text-[#1B194A]' 
-                      : 'border-[#1B194A]/20 group-hover:border-[#73BE44] group-hover:bg-[#73BE44] group-hover:text-[#1B194A]'
-                  }`}>
-                    <ArrowRight size={14} />
-                  </span>
-                </a>
-              ))}
-              
-              <button className="w-full mt-6 px-6 py-4 bg-[#1B194A] text-[#F8FAFC] flex items-center justify-between group hover:bg-[#1B194A]/90 transition-all duration-300 relative overflow-hidden">
-                <span className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(181,211,67,0.2)_30%,rgba(181,211,67,0.2)_40%,transparent_40%,transparent_70%,rgba(181,211,67,0.2)_70%,rgba(181,211,67,0.2)_80%,transparent_80%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                <span className="relative z-10 font-medium">Connect With Us</span>
-                <ArrowRight size={20} className="relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
-              </button>
+          <div className="bg-white shadow-xl mx-4 rounded-lg overflow-hidden">
+            <div className="py-2">
+              {/* Home */}
+              <a
+                href="#home"
+                onClick={(e) => handleNavClick(e, 'home')}
+                className={`block px-6 py-3 text-sm transition-colors ${
+                  activeSection === 'home' ? 'text-[#73BE44] bg-[#73BE44]/5' : 'text-[#1B194A] hover:bg-[#73BE44]/5'
+                }`}
+              >
+                Home
+              </a>
+
+              {/* About */}
+              <a
+                href="#about"
+                onClick={(e) => handleNavClick(e, 'about')}
+                className={`block px-6 py-3 text-sm transition-colors ${
+                  activeSection === 'about' ? 'text-[#73BE44] bg-[#73BE44]/5' : 'text-[#1B194A] hover:bg-[#73BE44]/5'
+                }`}
+              >
+                About
+              </a>
+
+              {/* Mobile Services */}
+              <div className="px-6 py-3">
+                <div className="text-sm font-medium text-[#1B194A] mb-2">Services</div>
+                <div className="ml-4 space-y-2">
+                  {services.map((service, index) => (
+                    <a
+                      key={index}
+                      href={service.href}
+                      onClick={(e) => handleServiceClick(e, service.id)}
+                      className="block text-sm text-[#64748B] hover:text-[#73BE44] transition-colors"
+                    >
+                      {service.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Portfolio */}
+              <a
+                href="#portfolio"
+                onClick={(e) => handleNavClick(e, 'portfolio')}
+                className={`block px-6 py-3 text-sm transition-colors ${
+                  activeSection === 'portfolio' ? 'text-[#73BE44] bg-[#73BE44]/5' : 'text-[#1B194A] hover:bg-[#73BE44]/5'
+                }`}
+              >
+                Portfolio
+              </a>
+
+              {/* CSR */}
+              <a
+                href="#csr"
+                onClick={(e) => handleNavClick(e, 'csr')}
+                className={`block px-6 py-3 text-sm transition-colors ${
+                  activeSection === 'csr' ? 'text-[#73BE44] bg-[#73BE44]/5' : 'text-[#1B194A] hover:bg-[#73BE44]/5'
+                }`}
+              >
+                CSR
+              </a>
+
+              {/* Contact */}
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className={`block px-6 py-3 text-sm transition-colors ${
+                  activeSection === 'contact' ? 'text-[#73BE44] bg-[#73BE44]/5' : 'text-[#1B194A] hover:bg-[#73BE44]/5'
+                }`}
+              >
+                Contact
+              </a>
+
+              {/* Mobile CTA */}
+              <div className="px-6 py-4">
+                <button className="w-full px-5 py-3 bg-[#1B194A] text-[#F8FAFC] text-sm font-medium hover:bg-[#1B194A]/90 transition-colors">
+                  Connect With Us
+                </button>
+              </div>
             </div>
-            
-            {/* Bottom pattern accent */}
-            <div className="h-2 bg-[linear-gradient(90deg,#73BE44_0%,#73BE44_20%,#1B194A_20%,#1B194A_40%,#F8FAFC_40%,#F8FAFC_60%,#1B194A_60%,#1B194A_80%,#73BE44_80%,#73BE44_100%)]"></div>
           </div>
         </div>
       </div>
