@@ -15,8 +15,8 @@ const Footer = () => {
 
   const contactInfo = [
     { icon: <MapPin size={16} />, text: 'Dar es Salaam, Tanzania' },
-    { icon: <Phone size={16} />, text: '+255 123 456 789' },
-    { icon: <Mail size={16} />, text: 'info@kapi.africa' },
+    { icon: <Phone size={16} />, text: '+255 767 888 833' },
+    { icon: <Mail size={16} />, text: 'info@kapi.co.tz' },
   ];
 
   const socialLinks = [
