@@ -142,8 +142,8 @@ const About = () => {
                 <div>
                   <h3 className="text-xl font-black text-[#F8FAFC] mb-2">Our Vision</h3>
                   <p className="text-[#F8FAFC]/60 text-sm leading-relaxed">
-                    To build a leading and trusted African business group that creates 
-                    lasting value through innovation, excellence, and sustainable growth.
+                    To be a leading and trusted African business group that
+                    creates lasting value through innovation, excellence, and sustainable growth.
                   </p>
                 </div>
               </div>

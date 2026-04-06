@@ -102,17 +102,17 @@ const Hero = () => {
     <div className="space-y-2">
   <h1>
     <span className="block text-7xl lg:text-7xl font-light text-[#1B194A] leading-[1.2] animate-slide-up">
-      Building
+      Building Value,
     </span>
   </h1>
   <h1>
     <span className="block text-7xl lg:text-8xl font-black text-[#1B194A] leading-[1.2] animate-slide-up animation-delay-150">
-      Tomorrow,
+      Powering 
     </span>
   </h1>
   <h1>
     <span className="block text-7xl lg:text-8xl font-black text-[#73BE44] leading-[1.2] animate-slide-up animation-delay-300">
-      Today.
+      Growth.
     </span>
   </h1>
 </div>
