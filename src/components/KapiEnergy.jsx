@@ -472,7 +472,7 @@ const KapiEnergy = () => {
       </section>
 
       {/* Animations */}
-      <style jsx>{`
+      {/* <style jsx>{`
         @keyframes slide-up {
           from {
             opacity: 0;
@@ -531,7 +531,7 @@ const KapiEnergy = () => {
         .animate-spin-slow {
           animation: spin-slow 20s linear infinite;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };
