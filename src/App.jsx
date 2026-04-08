@@ -12,11 +12,13 @@ import KapiEnergy from './components/KapiEnergy';
 import KapiTech from './components/KapiTech';
 import FinancialServices from './components/FinancialServices';
 import Agribusiness from './components/Agribusiness';
+import Directors from './components/Directors';
 
 const HomePage = () => (
   <>
     <Hero />
     <About />
+    <Directors />
     <Portfolio />
     <CSR />
     <Contact />

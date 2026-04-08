@@ -53,6 +53,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home', path: '/' },
     { name: 'About', href: '#about', id: 'about', path: '/' },
+    { name: 'Directors', href: '#directors', id: 'directors', path: '/' },
     { name: 'Portfolio', href: '#portfolio', id: 'portfolio', path: '/' },
     { name: 'CSR', href: '#csr', id: 'csr', path: '/' },
     { name: 'Contact', href: '#contact', id: 'contact', path: '/' },
